@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>О магазине</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="top-header">
+        <div class="logo">
+          <img src="img/logo.jpg" alt="logo" />
+        </div>
+        <div class="search-container">
+          <form>
+            <input type="text" placeholder="Поиск по сайту" name="search" />
+            <button type="submit"><i class="fas fa-search"></i></button>
+          </form>
+        </div>
+        <div class="bottom-header-wrapper">
+          <div class="login-container">
+            <a href="registration.html">Регистрация</a>
+            <a href="#" onclick="modalOpen()">Войти</a>
+          </div>
+          <div class="cart">
+            <a class="cart-icon badge" href="shopping-cart.html" data-count="3"><i class="fas fa-shopping-cart"></i></a>
+            <a class="account" href="#"><i class="fas fa-user"></i><span> Мой аккаунт</span></a>
+          </div>
+        </div>
+      </div>
+      <nav class="main-menu">
+        <ul>
+          <li class="dropdown">
+            <a href="catalog.html">Категория товаров<i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-content">
+              <a href="category.html">Веревки</a>
+              <a href="category.html">Скальные туфли</a>
+              <a href="category.html">Оттяжки</a>
+              <a href="category.html">Карабины</a>
+              <a href="category.html">Страховочные системы</a>
+              <a href="category.html">Страховочные устройства</a>
+              <a href="category.html">Аксесуары</a>
+            </div>
+          </li>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Магазин</a></li>
+          <li><a href="#">Бренды</a></li>
+          <li><a href="#">Скидки</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <div class="mobile-menu">
+          <div class="top-nav">
+            <span>Меню</span>
+            <div class="mobile-menu-icon" onclick="openMobileMenu()">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+          <div class="drop-nav">
+            <button class="menu-accordion">Категории товаров</button>
+            <div class="menu-panel">
+              <a href="category.html">Веревки</a>
+              <a href="category.html">Скальные туфли</a>
+              <a href="category.html">Оттяжки</a>
+              <a href="category.html">Карабины</a>
+              <a href="category.html">Страховочные системы</a>
+              <a href="category.html">Страховочные устройства</a>
+              <a href="category.html">Аксесуары</a>
+            </div>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Магазин</a>
+            <a href="#">Бренды</a>
+            <a href="#">Скидки</a>
+            <a href="contacts.html">Контакты</a>
+          </div>
+        </div>
+        <script>
+          function openMobileMenu() {
+            const menu = document.querySelector('.drop-nav');
+            if (menu.style.display === 'block') {
+              menu.style.display = 'none';
+            } else {
+              menu.style.display = 'block';
+            }
+          }
+          var acc = document.querySelector('.menu-accordion');
+          acc.addEventListener('click', function() {
+            this.classList.toggle('menu-open-acc');
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + 'px';
+            }
+          });
+        </script>
+      </nav>
+    </header>
+    <div id="login" class="modal">
+      <div class="modal-login">
+        <span onclick="modalClose()" class="close" title="закрыть">&times;</span>
+        <div class="modal-header">
+          Вход в личный кабинет
+        </div>
+        <div class="modal-body">
+          <div class="form-wrapper">
+            <form id="authorization" method="post" name="login-form">
+              <div class="form-item">
+                <label for="user-login">
+                  Email
+                  <span class="star">*</span>
+                </label>
+                <input
+                  class="form-control auth-control"
+                  type="text"
+                  name="user-login"
+                  id="user-login"
+                  maxlength="50"
+                  value=""
+                  placeholder="Email"
+                  tabindex="1"
+                  required
+                />
+              </div>
+              <div class="form-item">
+                <label for="user-pswd">
+                  Пароль
+                  <span class="star">*</span>
+                </label>
+                <input
+                  class="form-control auth-control"
+                  type="text"
+                  name="user-pswd"
+                  id="user-pswd"
+                  maxlength="50"
+                  value=""
+                  placeholder="Пароль"
+                  tabindex="1"
+                  required
+                />
+              </div>
+              <div class="buttons-holder">
+                <div class="check-block">
+                  <div class="remember">
+                    <input type="checkbox" id="user-remember" value="Y" tabindex="5" />
+                    <label for="user-remember" title="Запомнить меня" tabindex="5">
+                      Запомнить меня
+                    </label>
+                  </div>
+                  <a href="#" class="forgot" tabindex="3">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn" name="loing">
+                  <span>Войти</span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="sing-up-wrapper">
+            <a href="registration.html" class="go-sing-up btn" tabindex="6">Зарегистрироваться</a>
+            <div class="small-text">
+              После регистрации на сайте вам будет доступно отслеживание состояния заказов, личный кабинет и другие новые возможности.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var modal = document.getElementById('login');
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      };
+    </script>
+    <main>
+      <div class="breadcrumbs">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li>О магазине</li>
+        </ul>
+      </div>
+      <h1>О магазине</h1>
+      <div class="content-container">
+        <nav class="side-block">
+          <ul class="side-menu">
+            <li class="item current-item">
+              <a href="#">
+                <span>О магазине</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#">
+                <span>Условия оплаты</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#">
+                <span>Условия доставки</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#">
+                <span>Гарантия на товар</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#">
+                <span>Оферта</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit inventore officia odio magnam, repudiandae error quod ullam. Assumenda
+          exercitationem eos laboriosam, ipsam, ducimus rem molestias aut voluptate illo maxime quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Atque aliquid amet voluptatibus obcaecati, unde totam dolores nam accusamus impedit nihil qui. Repellendus a fugit expedita, tempore mollitia
+          ratione blanditiis commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis voluptates, explicabo, laborum minima veniam harum
+          quisquam ipsum quam quod optio est officia dolores repellendus ducimus animi eligendi neque voluptate doloribus. Lorem ipsum dolor sit amet,
+          consectetur adipisicing elit. Suscipit inventore officia odio magnam, repudiandae error quod ullam. Assumenda exercitationem eos laboriosam, ipsam,
+          ducimus rem molestias aut voluptate illo maxime quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid amet voluptatibus
+          obcaecati, unde totam dolores nam accusamus impedit nihil qui. Repellendus a fugit expedita, tempore mollitia ratione blanditiis commodi. Lorem ipsum
+          dolor sit amet, consectetur adipisicing elit. Debitis voluptates, explicabo, laborum minima veniam harum quisquam ipsum quam quod optio est officia
+          dolores repellendus ducimus animi eligendi neque voluptate doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit inventore
+          officia odio magnam, repudiandae error quod ullam. Assumenda exercitationem eos laboriosam, ipsam, ducimus rem molestias aut voluptate illo maxime
+          quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid amet voluptatibus obcaecati, unde totam dolores nam accusamus
+          impedit nihil qui. Repellendus a fugit expedita, tempore mollitia ratione blanditiis commodi. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Debitis voluptates, explicabo, laborum minima veniam harum quisquam ipsum quam quod optio est officia dolores repellendus ducimus animi eligendi
+          neque voluptate doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit inventore officia odio magnam, repudiandae error quod
+          ullam. Assumenda exercitationem eos laboriosam, ipsam, ducimus rem molestias aut voluptate illo maxime quibusdam. Lorem ipsum dolor sit amet,
+          consectetur adipisicing elit. Atque aliquid amet voluptatibus obcaecati, unde totam dolores nam accusamus impedit nihil qui. Repellendus a fugit
+          expedita, tempore mollitia ratione blanditiis commodi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis voluptates, explicabo,
+          laborum minima veniam harum quisquam ipsum quam quod optio est officia dolores repellendus ducimus animi eligendi neque voluptate doloribus.
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="main">
+        <div class="contacts">
+          <h4>Rock Shop</h4>
+          <p>+7(499)123-45-67</p>
+          <p>Москва, 123456, ул. Маршала Марщалова, д.18 стр 1</p>
+          <p>info@rock-shop.ru</p>
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-vk"></i></a>
+          </div>
+        </div>
+        <div class="info">
+          <h4>Компания</h4>
+          <a href="company.html">О комапнии</a>
+          <a href="company.html">О сайте</a>
+          <a href="company.html">Реквизиты</a>
+        </div>
+        <div class="info">
+          <h4>Магазин</h4>
+          <a href="shop.html">О магазине</a>
+          <a href="shop.html">Условия оплаты</a>
+          <a href="shop.html">Условия доставки</a>
+          <a href="shop.html">Гарантия на товар</a>
+          <a href="shop.html">Оферта</a>
+        </div>
+        <div class="info">
+          <h4>Инфо</h4>
+          <a href="info.html">FAQ</a>
+          <a href="info.html">Новости</a>
+          <a href="info.html">Вопросы и ответы</a>
+          <a href="info.html">Бренды</a>
+        </div>
+      </div>
+      <div class="mobile-info">
+        <a href="company.html">Компания</a>
+        <a href="shop.html">Магазин</a>
+        <a href="info.html">Инфо</a>
+      </div>
+      <div class="copyright">
+        <div class="pull-left">
+          &copy Магазин Rock-Shop. Все права защищены.
+        </div>
+        <div class="pull-right">
+          Разработка сайта: Mikhail Shcheglakov
+        </div>
+      </div>
+    </footer>
+    <div id="return-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+    <script src="js/scroll-up.js"></script>
+    <script src="js/modal.js"></script>
+  </body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">
+                <img src="img/logo.jpg" alt="logo">
+            </div>
+            <div class="search-container">
+                <form>
+                    <input type="text" placeholder="Поиск по сайту" name="search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="bottom-header-wrapper">
+                <div class="login-container">
+                    <a href="registration.html">Регистрация</a>
+                    <a href="#" onclick="modalOpen()">Войти</a>
+                </div>
+                <div class="cart">
+                    <a class="cart-icon badge" href="shopping-cart.html" data-count="3"><i class="fas fa-shopping-cart"></i></a>
+                    <a class="account" href="#"><i class="fas fa-user"></i><span> Мой аккаунт</span></a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li class="dropdown"><a href="catalog.html">Категория товаров<i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="category.html">Веревки</a>
+                        <a href="category.html">Скальные туфли</a>
+                        <a href="category.html">Оттяжки</a>
+                        <a href="category.html">Карабины</a>
+                        <a href="category.html">Страховочные системы</a>
+                        <a href="category.html">Страховочные устройства</a>
+                        <a href="category.html">Аксесуары</a>
+                    </div>
+                </li>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Магазин</a></li>
+                <li><a href="#">Бренды</a></li>
+                <li><a href="#">Скидки</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <div class="top-nav">
+                    <span>Меню</span>
+                    <div class="mobile-menu-icon" onclick="openMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+                <div class="drop-nav">
+                    <button class="menu-accordion">Категории товаров</button>
+                    <div class="menu-panel">
+                        <a href="category.html">Веревки</a>
+                        <a href="category.html">Скальные туфли</a>
+                        <a href="category.html">Оттяжки</a>
+                        <a href="category.html">Карабины</a>
+                        <a href="category.html">Страховочные системы</a>
+                        <a href="category.html">Страховочные устройства</a>
+                        <a href="category.html">Аксесуары</a>
+                    </div>
+                    <a href="index.html">Главная</a>
+                    <a href="catalog.html">Магазин</a>
+                    <a href="#">Бренды</a>
+                    <a href="#">Скидки</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            <script>
+                function openMobileMenu() {
+                    const menu = document.querySelector('.drop-nav');
+                    if (menu.style.display === 'block') {
+                        menu.style.display = 'none';
+                    } else {
+                        menu.style.display = 'block';
+                    }
+                }
+                var acc = document.querySelector('.menu-accordion');
+                acc.addEventListener('click', function() {
+                    this.classList.toggle('menu-open-acc');
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + 'px';
+                    }
+                });
+
+            </script>
+        </nav>
+    </header>
+    <div id="login" class="modal">
+        <div class="modal-login">
+            <span onclick="modalClose()" class="close" title="закрыть">&times;</span>
+            <div class="modal-header">
+                Вход в личный кабинет
+            </div>
+            <div class="modal-body">
+                <div class="form-wrapper">
+                    <form id="authorization" method="post" name="login-form">
+                        <div class="form-item">
+                            <label for="user-login">
+                                Email
+                                <span class="star">*</span>
+                            </label>
+                            <input class="form-control auth-control" type="text" name="user-login" id="user-login" maxlength="50" value="" placeholder="Email" tabindex="1" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="user-pswd">
+                                Пароль
+                                <span class="star">*</span>
+                            </label>
+                            <input class="form-control auth-control" type="text" name="user-pswd" id="user-pswd" maxlength="50" value="" placeholder="Пароль" tabindex="1" required>
+                        </div>
+                        <div class="buttons-holder">
+                            <div class="check-block">
+                                <div class="remember">
+                                    <input type="checkbox" id="user-remember" value="Y" tabindex="5">
+                                    <label for="user-remember" title="Запомнить меня" tabindex="5">
+                                        Запомнить меня
+                                    </label>
+                                </div>
+                                <a href="#" class="forgot" tabindex="3">Забыли пароль?</a>
+                            </div>
+                            <button type="submit" class="btn" name="loing">
+                                <span>Войти</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="sing-up-wrapper">
+                    <a href="registration.html" class="go-sing-up btn" tabindex="6">Зарегистрироваться</a>
+                    <div class="small-text">
+                        После регистрации на сайте вам будет доступно отслеживание состояния заказов, личный кабинет и другие новые возможности.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var modal = document.getElementById('login');
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    </script>
+    <main>
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li>Оформление заказа</li>
+            </ul>
+        </div>
+        <h1>Оформление заказа</h1>
+        <div class="order-container">
+            <div class="order-main-block">
+
+                <div class="customer-info-block frame">
+                    <div class="block-header">
+                        <span class="block-title"></span>
+                        Контактные данные
+                    </div>
+                    <div class="block-body">
+                        <div class="auth">
+                            <p>Если у вас есть аккаунт на сайте, авторизируйтесь: </p>
+                            <div class="input-container">
+                                <label for="log">E-mail: </label>
+                                <input type="email" class="login" name="log">
+                            </div>
+                            <div class="input-container">
+                                <label for="psw">Пароль:</label>
+                                <input type="password" class="password" name="psw">
+                            </div>
+                            <button type="submit" class="auth-button">Войти</button>
+                            <a href="#" class="forgot">Забыли пароль?</a>
+                        </div>
+                        <div class="no-auth">
+                            <p>Оформить без авторизации</p>
+                            <div class="input-container">
+                                <label for="fname">Имя</label>
+                                <input type="text" name="fname" required>
+                            </div>
+                            <div class="input-container">
+                                <label for="lname">Фамилия</label>
+                                <input type="text" name="lname" required>
+                            </div>
+                            <div class="input-container">
+                                <label for="email">Электронная почта</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <div class="input-container">
+                                <label for="phone">Мобильный телефон</label>
+                                <input type="tel" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-footer">
+                        <button>Далее</button>
+                    </div>
+                </div>
+
+                <div class="delivery-block frame">
+                    <div class="block-header">
+                        <span class="block-title"></span>
+                        Доставка
+                    </div>
+                    <div class="block-body">
+                        <div class="radio-container">
+                            <div class="radio">
+                                <input type="radio" id="pick-up" name="radio" checked onclick="calculateOrderPrice()">
+                                <label for="pick-up" class="radio-lable">Самовывоз (беспалатно)</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="delivery" name="radio" onclick="calculateOrderPrice()">
+                                <label for="delivery" class="radio-lable">Курьерская доставка (600 руб)</label>
+                                <section id="delivery-details" class="details">
+                                    <div class="no-auth">
+                                        <p>Укажите адрес доставки</p>
+                                        <div class="input-container">
+                                            <label for="city">Город</label>
+                                            <input type="text" name="city" required>
+                                        </div>
+                                        <div class="input-container">
+                                            <label for="street">Улица</label>
+                                            <input type="text" name="street" required>
+                                        </div>
+                                        <div class="input-container">
+                                            <label for="house">Дом</label>
+                                            <input type="text" name="house" class="s-input" required>
+                                        </div>
+                                        <div class="input-container">
+                                            <label for="building">Строение</label>
+                                            <input type="text" name="building" class="s-input">
+                                        </div>
+                                        <div class="input-container">
+                                            <label for="floor">Этаж</label>
+                                            <input type="text" name="floor" class="s-input" required>
+                                        </div>
+                                        <div class="input-container">
+                                            <label for="flat">Квартира</label>
+                                            <input type="text" name="flat" class="s-input" required>
+                                        </div>
+                                        <div class="input-container">
+                                            <label for="pin">Домофон</label>
+                                            <input type="text" name="pin" class="s-input">
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-footer">
+                        <button>Далее</button>
+                    </div>
+                </div>
+
+                <div class="payment-block frame">
+                    <div class="block-header">
+                        <span class="block-title"></span>
+                        Оплата
+                    </div>
+                    <div class="block-body">
+                        <div class="radio-container">
+                            <div class="radio">
+                                <input type="radio" id="cash-pick" name="pay" checked>
+                                <label for="cash-pick" class="radio-lable"><i class="fas fa-coins"></i> Наличными (при самовывозе)</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="card-pick" name="pay">
+                                <label for="card-pick" class="radio-lable"><i class="far fa-credit-card"></i> Картой (при самовывозе)</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="cash-del" name="pay">
+                                <label for="cash-del" class="radio-lable"><i class="fas fa-coins"></i> Наличными курьевру</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="card-del" name="pay">
+                                <label for="card-del" class="radio-lable"><i class="far fa-credit-card"></i> Картой курьеру</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-footer">
+                        <button>Далее</button>
+                    </div>
+                </div>
+
+                <div class="cart-block frame">
+                    <div class="block-header">
+                        <span class="block-title"></span>
+                        Товары в заказе
+                    </div>
+                    <div class="block-body">
+                        <div class="cart-container">
+                            <table class="shopping-cart">
+                                <thead>
+                                    <tr>
+                                        <th class="image">&nbsp;</th>
+                                        <th>Товар</th>
+                                        <th>Скидка</th>
+                                        <th>Цена</th>
+                                        <th>Количество</th>
+                                        <th class="tb-sum">Сумма</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cartContainer">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-order-side-block">
+                    <div class="change-cart">
+                        Ваш заказ
+                        <a href="shopping-cart.html" class="change-cart-link">Изменить</a>
+                    </div>
+                    <div class="total-line">
+                        <span class="total-lide-l">Товаров на:</span>
+                        <span id="totalItemsPrice" class="total-line-r">18000 руб.</span>
+                    </div>
+                    <div class="total-line">
+                        <span class="total-lide-l">Доставка:</span>
+                        <span id="deliveryPrice" class="total-line-r free">Бесплатно</span>
+                    </div>
+                    <div class="total-line line-bottom">
+                        <span class="total-lide-l">Итого:</span>
+                        <span id="totalOrderPrice" class="total-line-r">18000 руб.</span>
+                    </div>
+                </div>
+                <button class="submit-order">Оформить заказ</button>
+            </div>
+            <div class="sticky order-side-block">
+                <div class="change-cart">
+                    Ваш заказ
+                    <a href="shopping-cart.html" class="change-cart-link">Изменить</a>
+                </div>
+                <div class="total-line">
+                    <span class="total-lide-l">Товаров на:</span>
+                    <span id="totalItemsPriceMob" class="total-line-r">18000 руб.</span>
+                </div>
+                <div class="total-line">
+                    <span class="total-lide-l">Доставка:</span>
+                    <span id="deliveryPriceMob" class="total-line-r free">Бесплатно</span>
+                </div>
+                <div class="total-line line-bottom">
+                    <span class="total-lide-l">Итого:</span>
+                    <span id="totalOrderPriceMob" class="total-line-r">18000 руб.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="clear-both sticky-stopper"></div>
+    <footer>
+        <div class="main">
+            <div class="contacts">
+                <h4>Rock Shop</h4>
+                <p>+7(499)123-45-67</p>
+                <p>Москва, 123456, ул. Маршала Марщалова, д.18 стр 1</p>
+                <p>info@rock-shop.ru</p>
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                </div>
+            </div>
+            <div class="info">
+                <h4>Компания</h4>
+                <a href="company.html">О комапнии</a>
+                <a href="company.html">О сайте</a>
+                <a href="company.html">Реквизиты</a>
+            </div>
+            <div class="info">
+                <h4>Магазин</h4>
+                <a href="shop.html">О магазине</a>
+                <a href="shop.html">Условия оплаты</a>
+                <a href="shop.html">Условия доставки</a>
+                <a href="shop.html">Гарантия на товар</a>
+                <a href="shop.html">Оферта</a>
+            </div>
+            <div class="info">
+                <h4>Инфо</h4>
+                <a href="info.html">FAQ</a>
+                <a href="info.html">Новости</a>
+                <a href="info.html">Вопросы и ответы</a>
+                <a href="info.html">Бренды</a>
+            </div>
+        </div>
+        <div class="mobile-info">
+            <a href="company.html">Компания</a>
+            <a href="shop.html">Магазин</a>
+            <a href="info.html">Инфо</a>
+        </div>
+        <div class="copyright">
+            <div class="pull-left">
+                &copy Магазин Rock-Shop. Все права защищены.
+            </div>
+            <div class="pull-right">
+                Разработка сайта: Mikhail Shcheglakov
+            </div>
+        </div>
+    </footer>
+    <div id="return-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    <script src="js/scroll-up.js"></script>
+    <script src="js/sticky-sidebar.js"></script>
+    <script src="js/order.js"></script>
+    <script src="js/modal.js"></script>
+</body>
+
+</html>
